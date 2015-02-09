@@ -92,8 +92,6 @@ function cssCiewerDebugElSimpleCssDefinition( info, tab )
 	chrome.tabs.executeScript(tab.id, {code:'cssViewerCopyCssToConsole("simpleCssDefinition")'});
 }
 
-// cssCiewerDebugSemanticUIButtonVariables
-function cssCiewerDebugSemanticUIButtonVariables( info, tab )
-{
+function cssCiewerDebugSemanticUIButtonVariables( info, tab ) {
 	chrome.tabs.executeScript(tab.id, {code:'cssViewerCopyCssToConsole("semanticUIButtonVariables")'});
 }
