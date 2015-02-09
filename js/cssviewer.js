@@ -633,7 +633,7 @@ function CSSViewer_build_semanticUI_button_variables() {
   CSSViewer_semanticUI_button_variables += "@pageFont: " + CSSViewer_computedStyle.getPropertyValue('font-family') + ";\n";
   CSSViewer_semanticUI_button_variables += "@textTransform: " + CSSViewer_computedStyle.getPropertyValue('text-transform') + ";\n";
   CSSViewer_semanticUI_button_variables += "@fontWeight: " + CSSViewer_computedStyle.getPropertyValue('font-weight') + ";\n";
-  CSSViewer_semanticUI_button_variables += "@textColor: " + CSSViewer_computedStyle.getPropertyValue('color') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@textColor: " + rgbToHex(CSSViewer_computedStyle.getPropertyValue('color')) + ";\n";
   CSSViewer_semanticUI_button_variables += "\n";
   CSSViewer_semanticUI_button_variables += "@textShadow: " + CSSViewer_computedStyle.getPropertyValue('text-shadow') + ";\n";
   CSSViewer_semanticUI_button_variables += "@invertedTextShadow: '';\n";
@@ -647,7 +647,7 @@ function CSSViewer_build_semanticUI_button_variables() {
   CSSViewer_semanticUI_button_variables += "@backgroundImage: " + '' + ";\n";
   CSSViewer_semanticUI_button_variables += "@boxShadow: " + '' + ";\n";
   CSSViewer_semanticUI_button_variables += "\n";
-  CSSViewer_semanticUI_button_variables += "@hoverBackgroundColor: " + CSSViewer_computedStyle.getPropertyValue('background-color') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBackgroundColor: " + rgbToHex(CSSViewer_computedStyle.getPropertyValue('background-color')) + ";\n";
   CSSViewer_semanticUI_button_variables += "@hoverBackgroundImage: " + CSSViewer_computedStyle.getPropertyValue('background-image') + "\n";
   CSSViewer_semanticUI_button_variables += "@hoverBoxShadow: " + CSSViewer_computedStyle.getPropertyValue('box-shadow') + ";\n";
   CSSViewer_semanticUI_button_variables += "\n";
@@ -680,6 +680,27 @@ function CSSViewer_build_semanticUI_button_variables() {
   CSSViewer_semanticUI_button_variables += "@big: 1.125rem;\n";
   CSSViewer_semanticUI_button_variables += "@huge: 1.25rem;\n";
   CSSViewer_semanticUI_button_variables += "@massive: 1.3rem;\n";
+}
+
+function rgbToHex(rgbString) {
+  /* return blank field if no input */
+  if(rgbString == null) {
+    return '';
+  }
+
+  /* don't try converting to hex if RGBA */
+  rgba = rgbString.match(/^rgba\((\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)$/);
+  if(rgba) {
+    return rgbString;
+  }
+
+  bg = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+  function hex(x) {
+    return ("0" + parseInt(x).toString(16)).slice(-2);
+  }
+
+  return "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
 }
 
 function CSSViewerMouseOut(e)
