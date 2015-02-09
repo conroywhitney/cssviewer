@@ -21,11 +21,14 @@
 ** Globals
 */
 
-var CSSViewer_element
+var CSSViewer_element;
 
-var CSSViewer_element_cssDefinition
+var CSSViewer_element_cssDefinition;
 
-var CSSViewer_container
+var CSSViewer_semanticUI_button_variables;
+var CSSViewer_semanticUI_css_diff_variables;
+
+var CSSViewer_container;
 
 // CSS Properties
 var CSSViewer_pFont = new Array(
@@ -573,6 +576,9 @@ function CSSViewerMouseOver(e)
 
   CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyle);
 
+  CSSViewer_build_semanticUI_button_variables(CSSViewer_element, CSSViewer_computedStyle);
+  CSSViewer_build_css_diff_variables(CSSViewer_element, CSSViewer_computedStyle);
+
 	// console.log( element.cssText ); //< debug the hovered el css
 }
 
@@ -615,6 +621,138 @@ function CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyl
 	CSSViewer_element_cssDefinition += "}";
 }
 
+/* output SemanticUI variable file for button attributes */
+function CSSViewer_build_semanticUI_button_variables(CSSViewer_element, CSSViewer_computedStyle) {
+  var
+    hostname = window.location.hostname
+  ;
+
+  /* pretty print header */
+  CSSViewer_semanticUI_button_variables = "/*-------------------\n";
+  CSSViewer_semanticUI_button_variables += "   Button Variables\n";
+  CSSViewer_semanticUI_button_variables += "   " + hostname + "\n";
+  CSSViewer_semanticUI_button_variables += "--------------------*/\n";
+
+  /*
+   * taken from: https://github.com/Semantic-Org/Semantic-UI/blob/master/src/themes/github/elements/button.variables
+   * not sure if there should be more, or less, button variables here ...
+   */
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@pageFont: " + CSSViewer_computedStyle.getPropertyValue('font-family') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@textTransform: " + CSSViewer_computedStyle.getPropertyValue('text-transform') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@fontWeight: " + CSSViewer_computedStyle.getPropertyValue('font-weight') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@textColor: " + rgbToHex(CSSViewer_computedStyle.getPropertyValue('color')) + ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@textShadow: " + CSSViewer_computedStyle.getPropertyValue('text-shadow') + ";\n";
+  CSSViewer_semanticUI_button_variables += "@invertedTextShadow: '';\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@borderColor: " + rgbToHex(CSSViewer_computedStyle.getPropertyValue('border-color')) + ";\n";
+  CSSViewer_semanticUI_button_variables += "@borderRadius: " + CSSViewer_computedStyle.getPropertyValue('border-radius') + ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@verticalPadding: " + CSSViewer_computedStyle.getPropertyValue('padding-top') + "\n";
+  CSSViewer_semanticUI_button_variables += "@horizontalPadding: " + CSSViewer_computedStyle.getPropertyValue('padding-left') + ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@backgroundColor: " + "''" + ";\n";
+  CSSViewer_semanticUI_button_variables += "@backgroundImage: " + "''" + ";\n";
+  CSSViewer_semanticUI_button_variables += "@boxShadow: " + "''" + ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBackgroundColor: " + rgbToHex(CSSViewer_computedStyle.getPropertyValue('background-color')) + ";\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBackgroundImage: " + CSSViewer_computedStyle.getPropertyValue('background-image') + "\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBoxShadow: " + CSSViewer_computedStyle.getPropertyValue('box-shadow') + ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@downBackgroundColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "@downBackgroundImage: '';\n";
+  CSSViewer_semanticUI_button_variables += "@downBoxShadow: ''\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@activeBackgroundColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "@activeBackgroundImage: '';\n";
+  CSSViewer_semanticUI_button_variables += "@activeBoxShadow: ''\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconBackgroundColor: transparent;\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconBorder: transparent;\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconPadding: (@horizontalPadding + 2.25em);\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@basicFontWeight: '';\n";
+  CSSViewer_semanticUI_button_variables += "@basicTextColor: @linkColor;\n";
+  CSSViewer_semanticUI_button_variables += "@basicHoverTextColor: @linkHoverColor;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@basicHoverBackground: '';\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@primaryColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "@secondaryColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@mini: 0.6rem;\n";
+  CSSViewer_semanticUI_button_variables += "@tiny: 0.7rem;\n";
+  CSSViewer_semanticUI_button_variables += "@small: 0.85rem;\n";
+  CSSViewer_semanticUI_button_variables += "@medium: 0.92rem;\n";
+  CSSViewer_semanticUI_button_variables += "@large: 1rem;\n";
+  CSSViewer_semanticUI_button_variables += "@big: 1.125rem;\n";
+  CSSViewer_semanticUI_button_variables += "@huge: 1.25rem;\n";
+  CSSViewer_semanticUI_button_variables += "@massive: 1.3rem;\n";
+
+}
+
+/* output CSS variables for element that are different than baseline page element */
+function CSSViewer_build_css_diff_variables(CSSViewer_element, CSSViewer_computedStyle) {
+  var
+    hostname = window.location.hostname,
+    domain   = hostname.substr(0, hostname.indexOf('.', 4)).replace('www.', '').replace('-', ''),
+    stylez = window.getComputedStyle(CSSViewer_element, null),
+    hoverz = null,
+    iframe = document.createElement('iframe'),
+    baseline = null,
+    /* concat all arrays of CSSViewer delineation of CSS attributes */
+    dimensions = CSSViewer_pFont.concat(CSSViewer_pColorBg).concat(CSSViewer_pBox).concat(CSSViewer_pPositioning).concat(CSSViewer_pList).concat(CSSViewer_pTable).concat(CSSViewer_pMisc).concat(CSSViewer_pEffect)
+  ;
+
+  /* pretty print header */
+  CSSViewer_semanticUI_css_diff_variables =  "\n\n\n\n";
+  CSSViewer_semanticUI_css_diff_variables += "/*------------------- \n";
+  CSSViewer_semanticUI_css_diff_variables += "   CSS Diff           \n";
+  CSSViewer_semanticUI_css_diff_variables += "  " + hostname + "    \n";
+  CSSViewer_semanticUI_css_diff_variables += "-------------------*/ \n";
+
+  /* create a plain iframe for a stylistic baseline */
+  iframe.style.display = "none";
+  iframe.src           = "about:blank";
+  document.body.appendChild(iframe);
+  baseline = window.getComputedStyle(iframe, null);
+
+  /* go through all potential CSS variables -- see how diff from baseline */
+  for(var i = 0; i < dimensions.length; i++) {
+    var
+      style = dimensions[i],
+      value = stylez.getPropertyValue(style),
+      orig  = baseline.getPropertyValue(style)
+    ;
+    if (value != orig) {
+      /* if CSS attribute value of element diff from baseline, output */
+      CSSViewer_semanticUI_css_diff_variables += style + ": "+ rgbToHex(value) + ";\n";
+    }
+  }
+
+}
+
+function rgbToHex(rgbString) {
+  /* return blank field if no input */
+  if(rgbString == null) {
+    return '';
+  }
+
+  bg = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+  /* If not a match, then can't convert to hex -- return orig */
+  if(bg == null) {
+    return rgbString;
+  }
+
+  function hex(x) {
+    return ("0" + parseInt(x).toString(16)).slice(-2);
+  }
+
+  return "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+}
+
 function CSSViewerMouseOut(e)
 {
 	this.style.outline = '';
@@ -631,7 +769,10 @@ function CSSViewerMouseMove(e)
 		return;
 	}
 
-	block.style.display = 'block';
+	/*block.style.display = 'block';*/
+
+  /* hide box because not needed */
+	block.style.display = 'none';
 	
 	var pageWidth = window.innerWidth;
 	var pageHeight = window.innerHeight;
@@ -950,6 +1091,11 @@ function cssViewerCopyCssToConsole(type)
 	if( 'cssText' == type ) return console.log( document.defaultView.getComputedStyle(CSSViewer_element, null).cssText );
 	if( 'getComputedStyle' == type ) return console.log( document.defaultView.getComputedStyle(CSSViewer_element, null) );
 	if( 'simpleCssDefinition' == type ) return console.log( CSSViewer_element_cssDefinition );
+	if( 'semanticUIButtonVariables' == type ) {
+    console.log( CSSViewer_semanticUI_button_variables );
+    console.log( CSSViewer_semanticUI_css_diff_variables );
+    return;
+  }
 }
 
 /*
