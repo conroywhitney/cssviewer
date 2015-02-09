@@ -29,8 +29,9 @@ chrome.browserAction.onClicked.addListener(function(tab)
 
 	if( ! cssViewerLoaded ) 
 	{
-		cssCiewerContextMenusParent  = chrome.contextMenus.create( { "title" : "CSSViewer console", contexts:["all"] } );
+		cssCiewerContextMenusParent  = chrome.contextMenus.create( { "title" : "SemanticUI Mystique", contexts:["all"], "onclick": cssCiewerDebugSemanticUIButtonVariables } );
 
+    /* hide all other context menus
 		chrome.contextMenus.create( { "title": "element"                    , contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugEl } );
 		chrome.contextMenus.create( { "title": "element.id"                 , contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugElId } );
 		chrome.contextMenus.create( { "title": "element.tagName"            , contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugElTagName } );
@@ -39,7 +40,10 @@ chrome.browserAction.onClicked.addListener(function(tab)
 		chrome.contextMenus.create( { "title": "element.cssText"            , contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugElCssText } );
 		chrome.contextMenus.create( { "title": "element.getComputedStyle"   , contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugElGetComputedStyle } );
 		chrome.contextMenus.create( { "title": "element.simpleCssDefinition", contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugElSimpleCssDefinition } );
-		chrome.contextMenus.create( { "title": "SemanticUI Button Variables", contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugSemanticUIButtonVariables } );
+    */
+
+    /* SemanticUI Context Menu */
+//		chrome.contextMenus.create( { "title": "SemanticUI Button Variables", contexts:["all"] , "parentId": cssCiewerContextMenusParent, "onclick": cssCiewerDebugSemanticUIButtonVariables } );
 	}
 
 	chrome.tabs.executeScript(tab.id, {file:'js/cssviewer.js'});

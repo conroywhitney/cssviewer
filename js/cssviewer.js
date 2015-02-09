@@ -698,7 +698,10 @@ function CSSViewerMouseMove(e)
 		return;
 	}
 
-	block.style.display = 'block';
+	/*block.style.display = 'block';*/
+
+  /* hide box because not needed */
+	block.style.display = 'none';
 	
 	var pageWidth = window.innerWidth;
 	var pageHeight = window.innerHeight;
