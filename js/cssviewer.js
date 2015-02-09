@@ -21,11 +21,13 @@
 ** Globals
 */
 
-var CSSViewer_element
+var CSSViewer_element;
 
-var CSSViewer_element_cssDefinition
+var CSSViewer_element_cssDefinition;
 
-var CSSViewer_container
+var CSSViewer_semanticUI_button_variables;
+
+var CSSViewer_container;
 
 // CSS Properties
 var CSSViewer_pFont = new Array(
@@ -573,6 +575,8 @@ function CSSViewerMouseOver(e)
 
   CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyle);
 
+  CSSViewer_build_semanticUI_button_variables(CSSViewer_element, CSSViewer_computedStyle);
+
 	// console.log( element.cssText ); //< debug the hovered el css
 }
 
@@ -613,6 +617,86 @@ function CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyl
 		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pEffect[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pEffect[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "}";
+}
+
+function CSSViewer_build_semanticUI_button_variables() {
+  CSSViewer_semanticUI_button_variables = "/*-------------------\n";
+  CSSViewer_semanticUI_button_variables += "   Button Variables\n";
+  CSSViewer_semanticUI_button_variables += "--------------------*/\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "/* Button Variables */\n";
+  CSSViewer_semanticUI_button_variables += "@pageFont: Helvetica Neue, Helvetica, Arial, sans-serif;\n";
+  CSSViewer_semanticUI_button_variables += "@textTransform: none;\n";
+  CSSViewer_semanticUI_button_variables += "@fontWeight: bold;\n";
+  CSSViewer_semanticUI_button_variables += "@textColor: #333333;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@textShadow: 0px 1px 0px rgba(255, 255, 255, 0.9);\n";
+  CSSViewer_semanticUI_button_variables += "@invertedTextShadow: 0px -1px 0px rgba(0, 0, 0, 0.25);\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@borderRadius: @relativeBorderRadius;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@verticalPadding: 0.75em;\n";
+  CSSViewer_semanticUI_button_variables += "@horizontalPadding: 1.15em;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@backgroundColor: #FAFAFA;\n";
+  CSSViewer_semanticUI_button_variables += "@backgroundImage: linear-gradient(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.1));\n";
+  CSSViewer_semanticUI_button_variables += "@boxShadow:\n";
+  CSSViewer_semanticUI_button_variables += "  0 -1px 0 0 rgba(0, 0, 0, 0.05) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 0 0 1px rgba(0, 0, 0, 0.13) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 1px 3px rgba(0, 0, 0, 0.05)\n";
+  CSSViewer_semanticUI_button_variables += ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@coloredBackgroundImage: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));\n";
+  CSSViewer_semanticUI_button_variables += "@coloredBoxShadow:\n";
+  CSSViewer_semanticUI_button_variables += "  0 -1px 0 0 rgba(0, 0, 0, 0.05) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 0 0 1px rgba(0, 0, 0, 0.1) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 1px 3px rgba(0, 0, 0, 0.05)\n";
+  CSSViewer_semanticUI_button_variables += ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBackgroundColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBackgroundImage: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));\n";
+  CSSViewer_semanticUI_button_variables += "@hoverBoxShadow: '';\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@downBackgroundColor: '';\n";
+  CSSViewer_semanticUI_button_variables += "@downBackgroundImage: '';\n";
+  CSSViewer_semanticUI_button_variables += "@downBoxShadow:\n";
+  CSSViewer_semanticUI_button_variables += "  0 -1px 0 0 rgba(0, 0, 0, 0.05) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 0 0 1px rgba(0, 0, 0, 0.13) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 3px 5px rgba(0, 0, 0, 0.15) inset !important\n";
+  CSSViewer_semanticUI_button_variables += ";\n";
+  CSSViewer_semanticUI_button_variables += "@activeBackgroundColor: #DFDFDF;\n";
+  CSSViewer_semanticUI_button_variables += "@activeBackgroundImage: none;\n";
+  CSSViewer_semanticUI_button_variables += "@activeBoxShadow:\n";
+  CSSViewer_semanticUI_button_variables += "  0 -1px 0 0 rgba(0, 0, 0, 0.05) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 0 0 1px rgba(0, 0, 0, 0.13) inset,\n";
+  CSSViewer_semanticUI_button_variables += "  0 3px 5px rgba(0, 0, 0, 0.1) inset !important\n";
+  CSSViewer_semanticUI_button_variables += ";\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconBackgroundColor: transparent;\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconBorder: transparent;\n";
+  CSSViewer_semanticUI_button_variables += "@labeledIconPadding: (@horizontalPadding + 2.25em);\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@basicFontWeight: bold;\n";
+  CSSViewer_semanticUI_button_variables += "@basicTextColor: @linkColor;\n";
+  CSSViewer_semanticUI_button_variables += "@basicHoverTextColor: @linkHoverColor;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@basicHoverBackground: #E0E0E0;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@blue: #3072B3;\n";
+  CSSViewer_semanticUI_button_variables += "@green: #60B044;\n";
+  CSSViewer_semanticUI_button_variables += "@black: #5D5D5D;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@primaryColor: @blue;\n";
+  CSSViewer_semanticUI_button_variables += "@secondaryColor: @black;\n";
+  CSSViewer_semanticUI_button_variables += "\n";
+  CSSViewer_semanticUI_button_variables += "@mini: 0.6rem;\n";
+  CSSViewer_semanticUI_button_variables += "@tiny: 0.7rem;\n";
+  CSSViewer_semanticUI_button_variables += "@small: 0.85rem;\n";
+  CSSViewer_semanticUI_button_variables += "@medium: 0.92rem;\n";
+  CSSViewer_semanticUI_button_variables += "@large: 1rem;\n";
+  CSSViewer_semanticUI_button_variables += "@big: 1.125rem;\n";
+  CSSViewer_semanticUI_button_variables += "@huge: 1.25rem;\n";
+  CSSViewer_semanticUI_button_variables += "@massive: 1.3rem;\n";
 }
 
 function CSSViewerMouseOut(e)
@@ -950,6 +1034,7 @@ function cssViewerCopyCssToConsole(type)
 	if( 'cssText' == type ) return console.log( document.defaultView.getComputedStyle(CSSViewer_element, null).cssText );
 	if( 'getComputedStyle' == type ) return console.log( document.defaultView.getComputedStyle(CSSViewer_element, null) );
 	if( 'simpleCssDefinition' == type ) return console.log( CSSViewer_element_cssDefinition );
+	if( 'semanticUIButtonVariables' == type ) return console.log( CSSViewer_semanticUI_button_variables );
 }
 
 /*
