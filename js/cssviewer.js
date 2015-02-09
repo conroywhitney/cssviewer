@@ -565,49 +565,54 @@ function CSSViewerMouseOver(e)
 	UpdateEffects(element);
 
 	CSSViewer_element = this;
+  CSSViewer_computedStyle = element;
 
 	cssViewerRemoveElement("cssViewerInsertMessage");
 
 	e.stopPropagation();
 
+  CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyle);
+
+	// console.log( element.cssText ); //< debug the hovered el css
+}
+
+function CSSViewer_build_cssDefinition(CSSViewer_element, CSSViewer_computedStyle) {
 	// generate simple css definition
-	CSSViewer_element_cssDefinition = this.tagName.toLowerCase() + (this.id == '' ? '' : ' #' + this.id) + (this.className == '' ? '' : ' .' + this.className) + " {\n";
+	CSSViewer_element_cssDefinition = CSSViewer_element.tagName.toLowerCase() + (CSSViewer_element.id == '' ? '' : ' #' + CSSViewer_element.id) + (CSSViewer_element.className == '' ? '' : ' .' + CSSViewer_element.className) + " {\n";
 
 	CSSViewer_element_cssDefinition += "\t/* Font & Text */\n"; 
 	for (var i = 0; i < CSSViewer_pFont.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pFont[i] + ': ' + element.getPropertyValue( CSSViewer_pFont[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pFont[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pFont[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Color & Background */\n";
 	for (var i = 0; i < CSSViewer_pColorBg.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pColorBg[i] + ': ' + element.getPropertyValue( CSSViewer_pColorBg[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pColorBg[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pColorBg[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Box */\n";
 	for (var i = 0; i < CSSViewer_pBox.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pBox[i] + ': ' + element.getPropertyValue( CSSViewer_pBox[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pBox[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pBox[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Positioning */\n";
 	for (var i = 0; i < CSSViewer_pPositioning.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pPositioning[i] + ': ' + element.getPropertyValue( CSSViewer_pPositioning[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pPositioning[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pPositioning[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* List */\n";
 	for (var i = 0; i < CSSViewer_pList.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pList[i] + ': ' + element.getPropertyValue( CSSViewer_pList[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pList[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pList[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Table */\n";
 	for (var i = 0; i < CSSViewer_pTable.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pTable[i] + ': ' + element.getPropertyValue( CSSViewer_pTable[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pTable[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pTable[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Miscellaneous */\n";
 	for (var i = 0; i < CSSViewer_pMisc.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pMisc[i] + ': ' + element.getPropertyValue( CSSViewer_pMisc[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pMisc[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pMisc[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "\n\t/* Effects */\n"; 
 	for (var i = 0; i < CSSViewer_pEffect.length; i++)
-		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pEffect[i] + ': ' + element.getPropertyValue( CSSViewer_pEffect[i] ) + ";\n";
+		CSSViewer_element_cssDefinition += "\t" + CSSViewer_pEffect[i] + ': ' + CSSViewer_computedStyle.getPropertyValue( CSSViewer_pEffect[i] ) + ";\n";
 
 	CSSViewer_element_cssDefinition += "}";
-
-	// console.log( element.cssText ); //< debug the hovered el css
 }
 
 function CSSViewerMouseOut(e)
