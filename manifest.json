@@ -6,18 +6,18 @@
   "description": "Copies CSS styles of element to SemanticUI variables", 
 
   "icons": {
-    "16": "img/16.png",
-    "22": "img/22.png",
-    "24": "img/24.png",
-    "32": "img/32.png",
-    "48": "img/48.png"
+    "16": "img/semantic-ui_logo.png",
+    "22": "img/semantic-ui_logo.png",
+    "24": "img/semantic-ui_logo.png",
+    "32": "img/semantic-ui_logo.png",
+    "48": "img/semantic-ui_logo.png"
   },
 
   "options_page": "option.html",
   "background": { "page":"background.html" },
 
   "browser_action": {
-    "default_icon": "img/16.png",
+    "default_icon": "img/semantic-ui_logo.png",
     "default_title": "SemanticUI Mystique"
   },
 
